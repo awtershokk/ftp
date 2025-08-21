@@ -1123,6 +1123,13 @@ func (c *ServerConn) Quit() error {
 	return errs.ErrorOrNil()
 }
 
+func (c *ServerConn) Close() error {
+	if c.conn != nil {
+		return c.conn.Close()
+	}
+	return nil
+}
+
 // Read implements the io.Reader interface on a FTP data connection.
 func (r *Response) Read(buf []byte) (int, error) {
 	return r.conn.Read(buf)
